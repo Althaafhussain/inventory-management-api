@@ -7,7 +7,7 @@ import crud
 
 app = FastAPI(title= "Inventory Management API")
 
-Base.metadata.create_all(bind=engine)
+
 
 @app.post("/products/", response_model=ProductResponse, status_code=201)
 def create_product(product: ProductCreate, db: Session = Depends(get_db)):

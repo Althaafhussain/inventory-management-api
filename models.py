@@ -9,4 +9,5 @@ class Product(Base):
     category = Column(String, index=True)
     quantity = Column(Integer, index=True)
     price = Column(Float, index=True)
+    description = Column(String, nullable=True)
 

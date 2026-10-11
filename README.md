@@ -120,3 +120,51 @@ The automated tests use a separate temporary SQLite database, keeping test data 
 - Database migrations using Alembic
 - Docker support
 - CI/CD with GitHub Actions
+
+## Database Migrations with Alembic
+
+This project uses Alembic to manage PostgreSQL database schema changes.
+
+### Setup
+
+Install the project dependencies:
+
+```bash
+uv sync
+```
+
+Configure your PostgreSQL connection in the `.env` file:
+
+```env
+POSTGRESQL_DATABASE_URL=your_postgresql_connection_url
+```
+
+### Running Migrations
+
+Check the current migration revision:
+
+```bash
+uv run alembic current
+```
+
+Generate a migration after changing a SQLAlchemy model:
+
+```bash
+uv run alembic revision --autogenerate -m "describe your change"
+```
+
+Review the generated migration script before applying it.
+
+Apply migrations:
+
+```bash
+uv run alembic upgrade head
+```
+
+Roll back one migration:
+
+```bash
+uv run alembic downgrade -1
+```
+
+**Note:** Review migration scripts before applying or reversing them. Downgrading can cause data loss if a migration removes columns or tables.
